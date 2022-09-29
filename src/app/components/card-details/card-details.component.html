@@ -1,0 +1,70 @@
+<div class="edit-form">
+  <h4>Update Card</h4>
+  <form>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="board_name">Board name</label>
+          <input type="text" class="form-control" id="board_name" [(ngModel)]="currentCard.board_name"
+            name="board_name" />
+        </div>
+        <div class="form-group">
+          <label for="Board_type">Board type</label>
+          <input type="text" class="form-control" id="Board_type" [(ngModel)]="currentCard.Board_type"
+            name="Board_type" />
+        </div>
+        <div class="form-group">
+          <label for="STM32Family">STM32Family</label>
+          <input type="text" class="form-control" id="STM32Family" [(ngModel)]="currentCard.STM32Family"
+            name="STM32Family" />
+        </div>
+        <div class="form-group">
+          <label for="reference">Reference</label>
+          <input type="text" class="form-control" id="reference" [(ngModel)]="currentCard.reference" name="reference" />
+        </div>
+        <div class="form-group">
+          <label for="Status">Status</label>
+          <input type="text" class="form-control" id="Status" [(ngModel)]="currentCard.Status" name="Status" />
+        </div>
+
+        <div class="form-group">
+          <label for="Owner">Owner</label>
+          <input type="text" class="form-control" id="Owner" [(ngModel)]="currentCard.Owner" name="Owner" />
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="Needed">Needed</label>
+          <input type="text" class="form-control" id="Needed" [(ngModel)]="currentCard.Needed" name="Needed" />
+        </div>
+        <div class="form-group">
+          <label for="Quantity">Quantity</label>
+          <input type="number" class="form-control" id="Quantity" [(ngModel)]="currentCard.Quantity" name="Quantity" />
+        </div>
+        <div class="form-group">
+          <label for="DHL_tracking">DHL tracking</label>
+          <input type="text" class="form-control" id="DHL_tracking" [(ngModel)]="currentCard.DHL_tracking"
+            name="DHL_tracking" />
+        </div>
+        <div class="form-group">
+          <label for="name_Reception">Reception name</label>
+          <input type="text" class="form-control" id="name_Reception" [(ngModel)]="currentCard.name_Reception"
+            name="name_Reception" />
+        </div>
+        <div class="form-group">
+          <label for="Date_reception">Date of reception</label>
+          <input type="date" class="form-control" id="Date_reception" [(ngModel)]="currentCard.Date_reception"
+            name="Date_reception" />
+        </div>
+      <div class="form-group">
+        <label for="etat">Etat</label>
+        <input type="checkbox" class="form-control" id="etat" required [(ngModel)]="currentCard.etat" name="etat" />
+      </div>
+    </div>
+    </div>
+  </form>
+  <button type="submit" class="btn btn-success mb-2" (click)="updateCard()">
+    Update
+  </button>
+  <p>{{ message }}</p>
+</div>

@@ -1,0 +1,70 @@
+<!-- <div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by board_name"
+          [(ngModel)]="board_name"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchboard_name()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>cards List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let card of cards; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveCard(card, i)"
+        >
+          {{ card.board_name }}
+        </li>
+      </ul>
+  
+      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllCards()">
+        Remove All
+      </button>
+    </div>
+    <div class="col-md-6">
+      <app-card-details
+        [viewMode]="true"
+        [currentCard]="currentCard"
+      ></app-card-details>
+    </div>
+  </div> -->
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+    <!-- <table datatable class="row-border hover"> -->
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Update</th>
+        <th>Delete</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.roles }}</td>
+        <td><a class="btn btn-info" routerLink="/user/{{user.id}}">Update</a></td>
+        <td><button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+ 
+  
