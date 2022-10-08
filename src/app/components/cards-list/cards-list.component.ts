@@ -16,6 +16,8 @@ export class CardsListComponent implements OnInit {
   currentCard: Card = {};
   currentIndex = -1;
   board_name = '';
+  roles = '';
+  admin = false;
   dtTrigger: Subject<any> = new Subject<any>();
   constructor(private cardService: CardService,
     private router: Router) { }
@@ -27,10 +29,11 @@ export class CardsListComponent implements OnInit {
     };
 
     this.retrieveCards();
+    this.userRole()
   }
 
-  retrieveCards(): void {
-    this.cardService.getAll()
+  async retrieveCards(): Promise<void> {
+    await this.cardService.getAll()
       .subscribe({
         next: (data) => {
           this.cards = data;
@@ -39,6 +42,15 @@ export class CardsListComponent implements OnInit {
         },
         error: (e) => console.error(e)
       });
+  }
+  userRole() {
+    if (localStorage["user"]) {
+      this.roles = JSON.parse(localStorage["user"]).roles
+      if (this.roles == "Admin") {
+        this.admin = true
+
+      }
+    }
   }
   updateList(): void {
     this.cardService.getAll()
@@ -61,19 +73,26 @@ export class CardsListComponent implements OnInit {
     this.currentCard = card;
     this.currentIndex = index;
   }
- delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-}
- deleteCard(id:any) {
-      this.cardService.delete(id)
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  deleteCard(id: any) {
+    this.cardService.delete(id)
       .subscribe({
-         next: (data) => {
+        next: (data) => {
           this.cards = data;
-           console.log(data);
+          console.log(data);
         },
         error: (e) => console.error(e)
       });
   }
-  
 
+  reserveCard(id: any) {
+    console.log(id)
+    if (localStorage["user"]) {
+      
+    }else{
+      this.router.navigate(["/login"])
+    }
+  }
 }

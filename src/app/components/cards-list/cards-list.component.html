@@ -1,30 +1,31 @@
-  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Board name</th>
-        <th>Board type</th>
-        <th>STM32Family</th>
-        <th>Reference</th>
-        <th>Status</th>
-        <th>Owner</th>
-        <th>Update</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let card of cards">
-        <td>{{ card.id }}</td>
-        <td>{{ card.board_name }}</td>
-        <td>{{ card.Board_type }}</td>
-        <td>{{ card.STM32Family }}</td>
-        <td>{{ card.reference }}</td>
-        <td>{{ card.Status }}</td>
-        <td>{{ card.Owner }}</td>
-        <td><a class="btn btn-info" routerLink="/card/{{card.id}}">Update</a></td>
-        <td><button class="btn btn-danger" (click)="deleteCard(card.id)">Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
- 
-  
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Board name</th>
+      <th>Board type</th>
+      <th>STM32Family</th>
+      <th>Reference</th>
+      <th>Status</th>
+      <th>Owner</th>
+      <th><span *ngIf="admin; else notAdmin">Update</span>
+        <ng-template #notAdmin><span>Reserve</span></ng-template>
+      </th>
+      <th><span *ngIf="admin">Delete</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let card of cards">
+      <td>{{ card.id }}</td>
+      <td>{{ card.board_name }}</td>
+      <td>{{ card.Board_type }}</td>
+      <td>{{ card.STM32Family }}</td>
+      <td>{{ card.reference }}</td>
+      <td>{{ card.Status }}</td>
+      <td>{{ card.Owner }}</td>
+      <td><a *ngIf="admin" class="btn btn-info" routerLink="/card/{{card.id}}">Update</a><button *ngIf="!admin"
+          class="btn btn-success" (click)="reserveCard(card.id)">Reserve</button></td>
+      <td><button *ngIf="admin" class="btn btn-danger" (click)="deleteCard(card.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>

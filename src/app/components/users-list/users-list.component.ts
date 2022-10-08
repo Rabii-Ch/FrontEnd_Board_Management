@@ -28,8 +28,8 @@ export class UsersListComponent implements OnInit {
     this.retrieveUsers();
   }
 
-  retrieveUsers(): void {
-    this.userService.getAll()
+  async retrieveUsers(): Promise<void> {
+    await this.userService.getAll()
       .subscribe({
         next: (data) => {
           this.users = data;

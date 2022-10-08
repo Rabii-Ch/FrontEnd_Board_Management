@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
     password: '',
   };
   username!:string
+  message=""
 
   constructor(private userService: UserService,
     private router: Router) { }
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit {
         },
         error: (e) => {
           console.error(e)
+          this.message=e.error.message
           // alert("Error occured")
         }
       });   

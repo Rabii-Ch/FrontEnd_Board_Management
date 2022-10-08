@@ -4,13 +4,13 @@
       <li class="nav-item">
         <a routerLink="cards" class="nav-link">Card list</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="admin" class="nav-item">
         <a routerLink="card/add" class="nav-link">Add card</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="admin" class="nav-item">
         <a routerLink="users" class="nav-link">User list</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="admin" class="nav-item">
         <a routerLink="user/add" class="nav-link">Add user</a>
       </li>
       <li *ngIf="display; else notDisplay" class="d-flex">
@@ -21,8 +21,6 @@
         <a routerLink="login" class="nav-link">Login</a>
       </li>
     </ng-template>
-     
-      
     </div>
   </nav>
 

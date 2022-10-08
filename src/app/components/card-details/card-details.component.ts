@@ -26,7 +26,7 @@ export class CardDetailsComponent implements OnInit {
     etat: false
   };
 
-  message = '';
+
 
   constructor(
     private cardService: CardService,
@@ -35,7 +35,6 @@ export class CardDetailsComponent implements OnInit {
 
   ngOnInit(): void {
   
-      this.message = '';
       this.getCard(this.route.snapshot.params["id"]);
   }
 
@@ -66,14 +65,13 @@ export class CardDetailsComponent implements OnInit {
       etat: status
     };
 
-    this.message = '';
+  
 
     this.cardService.update(this.currentCard.id, data)
       .subscribe({
         next: (res) => {
           console.log(res);
           this.currentCard.etat = status;
-          this.message = res.message ? res.message : 'The status was updated successfully!';
         },
         error: (e) => console.error(e)
       });
@@ -82,13 +80,11 @@ export class CardDetailsComponent implements OnInit {
   //   return new Promise(resolve => setTimeout(resolve, ms));
   // }
   updateCard(): void {
-    this.message = '';
 
     this.cardService.update(this.currentCard.id, this.currentCard)
       .subscribe({
         next: (res) => {
           console.log(res);
-          this.message = 'This card was updated successfully!';
         },
         error: (e) => console.error(e)
       });

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
 import { CardService } from 'src/app/services/card.service';
 
@@ -25,8 +26,10 @@ export class AddCardComponent implements OnInit {
     etat:false
     };
     submitted = false;
+    newCard = false
   
-    constructor(private cardService: CardService) { }
+    constructor(private cardService: CardService,
+      private router: Router) { }
   
     ngOnInit(): void {
     }
@@ -55,24 +58,25 @@ export class AddCardComponent implements OnInit {
           },
           error: (e) => console.error(e)
         });
+        if (this.newCard) {
+          this.card = {
+            board_name:'',
+            Board_type:'',
+            STM32Family:'',
+            reference:'',
+            Status:'',
+            Owner:'',
+            Needed:'',
+            Quantity:0,
+            DHL_tracking:'',
+            name_Reception:'',
+            Date_reception:'',
+            etat:false
+          };
+        }else{
+          this.router.navigate(["/cards"])
+        }
     }
-  
-    newCard(): void {
-      this.submitted = false;
-      this.card = {
-        board_name:'',
-        Board_type:'',
-        STM32Family:'',
-        reference:'',
-        Status:'',
-        Owner:'',
-        Needed:'',
-        Quantity:0,
-        DHL_tracking:'',
-        name_Reception:'',
-        Date_reception:'',
-        etat:false
-      };
-    }
+
 
 }

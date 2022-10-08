@@ -16,8 +16,8 @@ export class AddUserComponent implements OnInit {
     password: '',
     roles: ''
   };
-  submitted = false;
   newUser = false
+  message = ""
 
   constructor(private userService: UserService,
     private router: Router) { }
@@ -37,19 +37,19 @@ export class AddUserComponent implements OnInit {
       .subscribe({
         next: (res) => {
           console.log(res);
-          this.submitted = true;
+          if (this.newUser) {
+            this.user = {
+              username: '',
+              email: '',
+              password: '',
+              roles: ''
+            };
+          }else{
+            this.router.navigate(["/users"])
+          }
         },
-        error: (e) => console.error(e)
+        error: (e) => {console.error(e)
+        this.message = e.error.message}
       });
-    if (this.newUser) {
-      this.user = {
-        username: '',
-        email: '',
-        password: '',
-        roles: ''
-      };
-    }else{
-      this.router.navigate(["/users"])
-    }
   }
 }

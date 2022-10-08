@@ -1,7 +1,7 @@
 
   
     <div class="edit-form">
-      <h4>Card</h4>
+      <h4>Update user</h4>
       <form>
         <div class="form-group">
           <label for="user_name">User Name</label>
@@ -16,7 +16,7 @@
         <div class="form-group">
           <label for="email">Email</label>
           <input
-            type="text"
+            type="email"
             class="form-control"
             id="email"
             [(ngModel)]="currentUser.email"
@@ -47,12 +47,11 @@
   
       <button
         type="submit"
-        class="badge badge-success mb-2"
+        class="btn btn-success mb-2"
         (click)="updateCard()"
       >
         Update
       </button>
-      <p>{{ message }}</p>
     </div>
   
   
